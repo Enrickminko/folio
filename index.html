@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PORTEFOLIO</title>
+  <meta name="description" content="Développeur front-end et maitrise un peu le back-end en évolution vers full-stack & designer UI/UX à Yaoundé. Projets, études de cas et contact.">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="preload" as="image" href="assets/img/photo-profil.jpg">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .section-bg{
+      position: relative;
+      color: #161111;                
+      overflow: hidden;
+      isolation: isolate;         
+    }
+    .section-bg::before{
+      content: "";
+      position: absolute; inset: 0;
+      background-image: var(--bg-image);
+      background-size: cover; background-position: center;
+      filter: brightness(0.35) saturate(0.95) blur(1px);
+      z-index: 0;
+      transform: scale(1.02);    
+    }
+    .section-bg > *{ position: relative; z-index: 1; }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav aria-label="Navigation principale">
+      <div class="brand-mini">
+        <a href="#brand" class="brand-link" style="color:#cec9c9;text-decoration:none;font-weight:600;">Portfolio</a>
+      </div>
+      <ul>
+        <li><a href="#brand">Profil</a></li>
+        <li><a href="#about">À propos</a></li>
+        <li><a href="#competences">Compétences</a></li>
+        <li><a href="#projects">Projets</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <button id="themeToggle" class="btn-secondary" aria-pressed="false" aria-label="Basculer le thème">🌓 Thème</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="brand" class="center section-bg" style="--bg-image:url('assets/img/bg-hero.jpg'); padding-top:2.5rem; padding-bottom:1.5rem;">
+      <div class="container" style="display:grid;gap:1rem;justify-items:center;text-align:center;">
+        <img src="assets/img/photo-profil.jpg" alt="Photo de profil" class="brand-img" width="150" height="150" loading="eager" decoding="sync">
+        <div class="brand-text">
+          <h1 style="margin:0;">MINKO PLEHEU SILINOU ENRICK SCHNEIDER</h1>
+          <p class="contact-info" style="margin-top:.35rem;">
+            📍 Feu Tongolo, Yaoundé&nbsp;|&nbsp;☎️ +237&nbsp;690&nbsp;41&nbsp;54&nbsp;69&nbsp;|&nbsp;✉️
+            <a href="mailto:enrickminko@gmail.com">enrickminko@gmail.com</a>
+          </p>
+        </div>
+      </div>
+    </section>
+    <section id="hero" class="section-bg" style="--bg-image:url('assets/img/bg-hero.jpg');">
+      <div class="container center" style="display:grid;gap:1rem;text-align:center;">
+        <h2>la créativité et la fonctionnalité web</h2>
+        <p style="font-size:clamp(1.15rem,2.2vw + .6rem,1.6rem);max-width:850px;margin:0 auto;">
+          Développeur plutôt <strong>front-end</strong> en évolution vers <strong>full-stack</strong> & designer <strong>UI/UX</strong>.
+        </p>
+        <div class="actions" style="margin-top:.6rem;display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center;">
+          <a href="#projects" class="btn">Voir mes projets</a>
+          <a href="#competences" class="btn-secondary">Voir mes compétences</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <h2>À propos de moi</h2>
+      <p>Je conçois et code des applications modernes, de la maquette au déploiement. Basé à Yaoundé, ouvert au télétravail.</p>
+      <a href="assets/CV_MINKO_ENRICK.pdf" download class="btn-secondary">Télécharger mon CV</a>
+
+      <h3 style="margin-top:2rem">Parcours scolaire &amp; certifications</h3>
+      <ol class="timeline">
+        <li>
+          <div class="dot"></div>
+          <div class="content">
+            <h4>Licence en Informatique — ICT University</h4>
+            <small>2022 — en cours</small>
+          </div>
+        </li>
+        <li>
+          <div class="dot"></div>
+          <div class="content">
+            <h4>Baccalauréat Scientifique — Lycée de BA Oumar</h4>
+            <small>2020</small>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section id="competences">
+      <h2>Compétences</h2>
+
+      <div class="badges">
+        <span class="badge">HTML5<span class="reveal">Sémantique, accessibilité, SEO</span></span>
+        <span class="badge">CSS3 (Grid/Flex)<span class="reveal">Responsive, animations</span></span>
+        <span class="badge">JavaScript<span class="reveal">ESNext, Fetch API, PWA</span></span>
+        <span class="badge">React<span class="reveal">Hooks, state, routing</span></span>
+        <span class="badge">PHP<span class="reveal">PDO, MVC léger</span></span>
+        <span class="badge">MySQL<span class="reveal">Indexation, requêtes optimisées</span></span>
+        <span class="badge">Node.js<span class="reveal">APIs, tooling</span></span>
+        <span class="badge">Figma<span class="reveal">Wireframes, design system</span></span>
+        <span class="badge">Adobe (Ai/Ps)<span class="reveal">Assets & retouches</span></span>
+      </div>
+      <div class="meters">
+        <div class="meter">
+          <div class="meter-head"><span>HTML/CSS</span><span class="value">0%</span></div>
+          <div class="track"><div class="bar" style="--val:95%"></div></div>
+        </div>
+        <div class="meter">
+          <div class="meter-head"><span>JavaScript</span><span class="value">0%</span></div>
+          <div class="track"><div class="bar" style="--val:55%"></div></div>
+        </div>
+        <div class="meter">
+          <div class="meter-head"><span>PHP/MySQL</span><span class="value">0%</span></div>
+          <div class="track"><div class="bar" style="--val:50%"></div></div>
+        </div>
+        <div class="meter">
+          <div class="meter-head"><span>Figma/UI</span><span class="value">0%</span></div>
+          <div class="track"><div class="bar" style="--val:80%"></div></div>
+        </div>
+      </div>
+      <ul class="soft-list">
+        <li>🧩 Résolution de problèmes</li>
+        <li>🚀 Autonomie</li>
+        <li>📅 Gestion de projet (Agile/Scrum)</li>
+        <li>🗣️ Communication technique</li>
+        <li>✨ Créativité</li>
+      </ul>
+    </section>
+
+    <section id="projects">
+      <h2>Mes projets</h2>
+
+      <div class="projects-grid">
+        <article class="project">
+          <img src="assets/img/projet-planning.png" alt="EventFlow — planning d’événements" class="thumb" loading="lazy" decoding="async">
+          <div class="project-body">
+            <h3>EventFlow — Gestion d’événements</h3>
+            <p>Application pour planifier des activités.</p>
+            <a class="btn" href="project-eventflow.html">Étude de cas</a>
+          </div>
+        </article>
+        <article class="project">
+          <img src="assets/img/projet-traducteur.png" alt="Traducteur intelligent — PWA" class="thumb" loading="lazy" decoding="async">
+          <div class="project-body">
+            <h3>Traducteur intelligent</h3>
+            <p>PWA multilingue, mode hors-ligne.</p>
+            <a class="btn" href="#">Bientôt</a>
+          </div>
+        </article>
+        <article class="project">
+          <img src="assets/img/projet-cuisine.png" alt="Recettes connectées — personnalisation" class="thumb" loading="lazy" decoding="async">
+          <div class="project-body">
+            <h3>Recettes connectées</h3>
+            <p>Personnalisation selon goûts et régimes.</p>
+            <a class="btn" href="#">Bientôt</a>
+          </div>
+        </article>
+      </div>
+    </section>
+    <section id="testimonials">
+      <h2>Témoignages</h2>
+      <div class="carousel">
+        <button class="nav prev" aria-label="Précédent"></button>
+
+        <div class="track">
+          <blockquote class="quote">
+            <p>« Collaboration fluide et livrables de qualité. »</p>
+            <footer>— Chef de projet</footer>
+          </blockquote>
+          <blockquote class="quote">
+            <p>« Son dashboard a accéléré nos opérations de 30%. »</p>
+            <footer>—  O M P</footer>
+          </blockquote>
+          <blockquote class="quote">
+            <p>« Très bon sens produit et UX. »</p>
+            <footer>— P. T., Enseignant</footer>
+          </blockquote>
+        </div>
+
+        <button class="nav next" aria-label="Suivant"></button>
+      </div>
+    </section>
+
+    <section id="contact" class="section-contact">
+  <h2>Contact</h2>
+  <form action="contact.php" method="post" id="contact-form" class="contact-form">
+    <div class="mb-3">
+      <label for="nom" class="form-label">Nom</label>
+      <input type="text" id="nom" name="nom" required class="form-control">
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" id="email" name="email" required class="form-control">
+    </div>
+    <div class="mb-3">
+      <label for="message" class="form-label">Message</label>
+      <textarea id="message" name="message" rows="5" required class="form-control"></textarea>
+    </div>
+    <button type="submit" class="btn">Envoyer</button>
+  </form>
+  <div id="form-message" class="success"></div>
+</section>
+<section id="liens" class="section-links">
+  <h2 class="section-title">Follow Me</h2>
+  <div class="social-links">
+    <a href="https://github.com/Enrickminko" target="_blank" rel="noopener" class="btn-social github" aria-label="GitHub">
+      <svg class="icon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+        <path fill="currentColor" d="M12 .5A12 12 0 0 0 0 12.7a12 12 0 0 0 8.2 11.4c.6.1.8-.3.8-.6V21c-3.3.7-4-1.6-4-1.6c-.5-1.2-1.2-1.6-1.2-1.6c-1-.7.1-.7.1-.7c1.1.1 1.7 1.1 1.7 1.1c1 .1.8-.7 2-1c-2.6-.3-5.3-1.3-5.3-5.8c0-1.3.5-2.4 1.2-3.3c-.1-.3-.5-1.6.1-3.2c0 0 1-.3 3.3 1.2c1-.3 2-.3 3-.3s2 .1 3 .3c2.3-1.5 3.3-1.2 3.3-1.2c.6 1.6.2 2.9.1 3.2c.8.9 1.3 2 1.3 3.3c0 4.6-2.7 5.5-5.3 5.8c.9.7 1.8 2 1.8 4.1v2.5c0 .3.2.7.8.6A12 12 0 0 0 24 12.7A12 12 0 0 0 12 .5"/>
+      </svg>
+      GitHub
+    </a>
+    <a href="https://www.linkedin.com/feed/" target="_blank" rel="noopener" class="btn-social linkedin" aria-label="LinkedIn">
+      <svg class="icon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+        <path fill="currentColor" d="M4.98 3.5A2.5 2.5 0 1 0 5 8.5a2.5 2.5 0 0 0 0-5M3 9h4v12H3zm7 0h3.8v1.7h.1c.5-.9 1.7-1.8 3.5-1.8C20.3 8.9 21 11 21 13.9V21h-4v-6.1c0-1.5 0-3.4-2.1-3.4s-2.4 1.6-2.4 3.3V21h-4z"/>
+      </svg>
+      LinkedIn
+    </a>
+    <a href="https://wa.me/237690415469" target="_blank" rel="noopener" class="btn-social whatsapp" aria-label="WhatsApp">
+      <svg class="icon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+        <path fill="currentColor" d="M20.5 3.5A11 11 0 0 0 3.4 20.7L2 22l1.3-4a11 11 0 0 0 17.2-14.5m-8.4 16A9 9 0 1 1 21 11a9 9 0 0 1-9 8.5m5-6.7c-.2 0-1.2-.6-1.4-.7s-.3-.2-.5.1s-.6.7-.8.8s-.3.1-.5 0a7.5 7.5 0 0 1-2.2-1.4a8 8 0 0 1-1.5-1.9c-.1-.2 0-.3.1-.5l.4-.5l.2-.4c0-.1 0-.2-.1-.3s-.5-1.3-.7-1.8s-.4-.4-.5-.4h-.4a.8.8 0 0 0-.6.3a2.5 2.5 0 0 0-.8 1.9a4.6 4.6 0 0 0 1 2.4a10.6 10.6 0 0 0 4 3.6a13.6 13.6 0 0 0 2.3.9h.6c.3 0 1 0 1.5-.7s.7-1.3.7-1.4s0-.2-.2-.2"/>
+      </svg>
+      WhatsApp
+    </a>
+  </div>
+</section>
+<footer class="footer">
+  <p>© Silinou Schneider — 2025 | Tous droits réservés</p>
+</footer>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

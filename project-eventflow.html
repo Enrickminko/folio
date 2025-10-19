@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EventFlow</title>
+  <meta name="description" content="Étude de cas EventFlow : application de gestion d’événements. Problème, solution, résultats, stack technique et extraits de code.">
+  <meta name="theme-color" content="#1e3a8a">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="preload" as="image" href="assets/img/mockup-dashboard.png">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+  <header>
+    <nav aria-label="Navigation principale">
+      <div class="brand">
+        <img src="assets/img/photo-profil.jpg" alt="Photo de profil" class="brand-img" width="60" height="60" loading="eager" decoding="sync">
+        <div class="brand-text">
+          <h1>EventFlow — Gestion d’événements</h1>
+          <p class="contact-info">Étude de cas complète</p>
+        </div>
+      </div>
+
+      <ul>
+        <li><a href="index.html#projects">← Retour aux projets</a></li>
+      </ul>
+
+      <button id="themeToggle" class="btn-secondary" aria-pressed="false" aria-label="Basculer le thème">🌓 Thème</button>
+    </nav>
+  </header>
+
+  <main>
+    
+    <section id="overview" class="center">
+      <div class="container">
+        <h2>Problème → Solution → Résultat</h2>
+        <p>
+          <strong>Contexte :</strong> la planification d’événements (réunions, ateliers, roadmaps) se faisait manuellement
+          via des fichiers épars. Résultat&nbsp;: perte de temps, oublis et manque de visibilité.
+        </p>
+      </div>
+    </section>
+
+
+    <section id="problem">
+      <h3>Problème</h3>
+      <ul>
+        <li>Informations dispersées (fichiers, messagerie, tableurs).</li>
+        <li>Pas de rappels ni de notifications centralisées.</li>
+        <li>Vision floue des disponibilités et des ressources.</li>
+      </ul>
+    </section>
+
+    <section id="solution">
+      <h3>Solution</h3>
+      <p>
+        <strong>EventFlow</strong> est une application web qui centralise la création, l’édition et le suivi des événements,
+        avec une interface claire et une base MySQL robuste.
+      </p>
+      <ul>
+        <li><strong>Design (Figma)</strong> : wireframes orientés tâches, hiérarchie visuelle sobre.</li>
+        <li><strong>Front-end</strong> : HTML/CSS/JS (grille responsive, composants, fetch, validation).</li>
+        <li><strong>Back-end</strong> : PHP (PDO) + MySQL, CRUD sécurisé, requêtes indexées.</li>
+        <li><strong>Qualité</strong> : accessibilité de base, gestion d’erreurs, feedbacks (toasts).</li>
+      </ul>
+
+      <p style="margin-top:1rem">
+        <a class="btn-secondary" href="#" target="_blank" rel="noopener">Prototype Figma</a>
+        <a class="btn-secondary" href="#" target="_blank" rel="noopener">Repo GitHub</a>
+        <a class="btn" href="#" target="_blank" rel="noopener">Démo Live</a>
+      </p>
+    </section>
+
+
+    <section id="role">
+      <h3>Rôle &amp; méthodologie</h3>
+      <p>
+        <strong>Rôle :</strong> Designer UI/UX, développeur front-end, développeur back-end.<br>
+        <strong>Méthodologie :</strong> 1) Wireframes → 2) Maquettes UI → 3) Intégration front → 4) API PHP/MySQL → 5) Tests utilisateurs → 6) Optimisations.
+      </p>
+    </section>
+
+    <section id="gallery">
+      <h3>Vues &amp; captures</h3>
+      <div class="projects-grid">
+        <img class="thumb" src="assets/img/mockup-dashboard.png" alt="Dashboard administrateur EventFlow" class="thumb" loading="lazy" decoding="async">
+        <img class="thumb" src="assets/img/projet-planning.png" alt="Vue calendrier / planning des événements" class="thumb" loading="lazy" decoding="async">
+      </div>
+    </section>
+
+    <section id="stack">
+      <h3>Stack technique</h3>
+      <ul>
+        <li><strong>Front-end :</strong> HTML5, CSS3 (Grid/Flex), JavaScript (modules, fetch, IntersectionObserver)</li>
+        <li><strong>Back-end :</strong> PHP&nbsp;8 (PDO), MySQL&nbsp;8, XAMPP (Apache + phpMyAdmin)</li>
+        <li><strong>Outils :</strong> Figma, Git/GitHub, VS Code</li>
+      </ul>
+    </section>
+
+    <section id="database">
+      <h3>Modèle de données (MySQL)</h3>
+      <p>Schéma minimal (5 tables)&nbsp;: <code>users</code>, <code>events</code>, <code>attendees</code>, <code>reminders</code>, <code>logs</code>.</p>
+
+      <pre><code class="language-sql">-- events
+CREATE TABLE events (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  owner_id INT NOT NULL,
+  title VARCHAR(160) NOT NULL,
+  description TEXT,
+  start_at DATETIME NOT NULL,
+  end_at DATETIME NOT NULL,
+  location VARCHAR(160),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  INDEX(owner_id), INDEX(start_at), INDEX(end_at)
+);
+
+-- attendees (participants à un event)
+CREATE TABLE attendees (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  event_id INT NOT NULL,
+  user_email VARCHAR(160) NOT NULL,
+  status ENUM('invited','going','declined') DEFAULT 'invited',
+  INDEX(event_id), INDEX(user_email)
+);
+</code></pre>
+
+      <h4>Extrait PHP (connexion PDO + insertion)</h4>
+      <pre><code class="language-php">&lt;?php
+$pdo = new PDO(
+  'mysql:host=127.0.0.1;dbname=portfolio_db;charset=utf8mb4',
+  'root', '',
+  [PDO::ATTR_ERRMODE =&gt; PDO::ERRMODE_EXCEPTION]
+);
+
+$stmt = $pdo-&gt;prepare("INSERT INTO events (owner_id,title,description,start_at,end_at,location)
+                       VALUES (?,?,?,?,?,?)");
+$stmt-&gt;execute([1, $title, $desc, $startAt, $endAt, $location]);
+echo "Événement créé ✅";
+?&gt;</code></pre>
+
+      <h4>Extrait JS (création par fetch)</h4>
+      <pre><code class="language-js">async function createEvent(payload){
+  const res = await fetch('api/create-event.php', {
+    method:'POST',
+    body: Object.entries(payload).reduce((f,[k,v]) => (f.append(k,v), f), new FormData())
+  });
+  const text = await res.text();
+  console.log(text);
+}
+
+createEvent({
+  title:'Sprint Review', description:'Démo de features',
+  start_at:'2025-11-10 10:00:00', end_at:'2025-11-10 11:00:00', location:'Salle 2'
+});</code></pre>
+    </section>
+
+
+    <section id="results">
+      <h3>Résultats</h3>
+      <ul>
+        <li><strong>Efficacité :</strong> −30&nbsp;% de temps de planification (tests internes).</li>
+        <li><strong>Performance :</strong> chargement des listes &lt;&nbsp;100&nbsp;ms grâce aux index.</li>
+        <li><strong>Couverture :</strong> 5 tables principales, validations client/serveur.</li>
+      </ul>
+    </section>
+
+
+    <section id="links">
+      <h3>Liens &amp; ressources</h3>
+      <p>
+        <a class="btn-secondary" href="#" target="_blank" rel="noopener">Figma</a>
+        <a class="btn-secondary" href="#" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn" href="index.html#projects">Retour aux projets</a>
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Schneider — Tous droits réservés.</p>
+    <div class="social-icons">
+      <a href="https://github.com/Enrickminko" target="_blank"><i class="bi bi-github"></i></a>
+      <a href="https://www.linkedin.com/feed/" target="_blank"><i class="bi bi-linkedin"></i></a>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
